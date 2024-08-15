@@ -14,15 +14,28 @@ const Navbar = () => {
             <Link href="/" className="flex items-center gap-1">
                 <Image
                     src="/assets/icons/logo.svg"
-                    alt="Pricescout"
-                    width={32}
-                    height={32}
+                    alt="logo"
+                    width={27}
+                    height={27}
                 />
 
                 <p className="nav-logo">
                     Price<span className='text-primary'>Scout</span>
                 </p>
             </Link>
+
+            <div className="flex items-center gap-5">
+                {navIcons.map((icons) => (
+                    <Image
+                        key={icons.alt}
+                        src={icons.src}
+                        alt={icons.alt}
+                        width={28}
+                        height={28}
+                        className = "object-contain"
+                    />
+                ))}
+            </div>
         </nav>
     </header>
   )
