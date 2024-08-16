@@ -90,8 +90,9 @@ export async function scrapeAmazonProduct(url: string) {
             average: Number(currentPrice) || Number(originalPrice),
         }
 
-        // return data;
-        console.log(data);
+        // console.log(data);
+        return data;
+    
     }
     catch(error: any){
         throw new Error(`Failed to create/update product: ${error.message}`);
