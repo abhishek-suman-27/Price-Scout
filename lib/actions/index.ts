@@ -58,40 +58,42 @@ export async function getProductById(productId: string) {
     if(!product) return null;
 
     return product;
+  } 
+  catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getAllProducts() {
+  try {
+    connectToDB();
+
+    const products = await Product.find();
+
+    return products;
   } catch (error) {
     console.log(error);
   }
 }
 
-// export async function getAllProducts() {
-//   try {
-//     connectToDB();
+export async function getSimilarProducts(productId: string) {
+  try {
+    connectToDB();
 
-//     const products = await Product.find();
+    const currentProduct = await Product.findById(productId);
 
-//     return products;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+    if(!currentProduct) return null;
 
-// export async function getSimilarProducts(productId: string) {
-//   try {
-//     connectToDB();
+    const similarProducts = await Product.find({
+      _id: { $ne: productId },
+    }).limit(3);
 
-//     const currentProduct = await Product.findById(productId);
-
-//     if(!currentProduct) return null;
-
-//     const similarProducts = await Product.find({
-//       _id: { $ne: productId },
-//     }).limit(3);
-
-//     return similarProducts;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+    return similarProducts;
+  } 
+  catch (error) {
+    console.log(error);
+  }
+}
 
 // export async function addUserEmailToProduct(productId: string, userEmail: string) {
 //   try {
